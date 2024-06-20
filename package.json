@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.98",
@@ -24,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "npm test -- --coverage --watchAll",
     "eject": "react-scripts eject",
     "service": "json-server --watch db.json --port 8000"
   },
@@ -46,6 +46,17 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.4"
+    "@testing-library/react": "^16.0.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "tailwindcss": "^3.4.4",
+    "ts-jest": "^29.1.5"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/index.tsx"
+    ]
   }
 }
