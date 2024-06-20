@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
+To run the project, you can ask me for the env file.
 
 ## Available Scripts
 
@@ -14,10 +15,19 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+### `npm run service`
+
+A local server will run on port 8000 [http://localhost:8000/files](http://localhost:8000/files) to make HTTP requests like GET, POST, PUSH, etc.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run test:coverage`
+
+Launches the test runner in the interactive watch mode.\
+And also it runs the coverage.
 
 ### `npm run build`
 
