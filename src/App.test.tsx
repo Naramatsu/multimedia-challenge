@@ -64,9 +64,7 @@ describe("App component", () => {
     userEvent.click(btnShowModal);
     const uploadfileTab = screen.getByText(/Cargar archivo/i);
     userEvent.click(uploadfileTab);
-    const dragAndDropComponent = screen.getByText(
-      /Haz click aqui o arrastra una imagen o video/i
-    );
-    expect(dragAndDropComponent).toBeInTheDocument();
+    const inputFile = screen.getByTestId(/file-input/i);
+    expect(inputFile).toBeInTheDocument();
   });
 });
