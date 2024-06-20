@@ -6,7 +6,14 @@ const Toast = ({ visible, type, message, onClose }: ToastInterface) => {
   return (
     <section
       role="alert"
-      className={`toast w-[350px] min-h-16 shadow-lg rounded-lg flex justify-start items-center gap-2 p-4 border-2 text-white fixed bottom-8 right-8 text-left
+      className={`
+        toast w-[350px] min-h-16
+        shadow-lg rounded-lg
+        flex justify-start items-center
+        gap-2 p-4
+        border-2
+        text-white text-left
+        fixed bottom-8 right-8
         ${visible ? "block" : "hidden"}
         ${type === ToastTypes.SUCCESS && "bg-emerald-600 border-emerald-800"}
         ${type === ToastTypes.ERROR && "bg-red-600 border-red-800"}
@@ -29,7 +36,14 @@ const Toast = ({ visible, type, message, onClose }: ToastInterface) => {
       <p className="mr-8">{message}</p>
       <IoCloseOutline
         data-testid="btn-toast-close"
-        className="absolute right-4 bg-transparent  h-6 w-6 text-2xl block outline-none focus:outline-none hover:cursor-pointer hover:text-black"
+        className={`
+          absolute right-4 block
+          bg-transparent
+          h-6 w-6
+          text-2xl
+          outline-none focus:outline-none
+          hover:cursor-pointer hover:text-black
+        `}
         onClick={onClose}
       />
     </section>
