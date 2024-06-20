@@ -21,7 +21,7 @@ const FileStateContext = ({ children }: any) => {
       const data = await fetchFilesApi();
       dispatch({
         type: ActionTypes.FETCH_FILES,
-        payload: data,
+        payload: data.filter((file) => file.url),
       });
     } catch (error) {
       dispatch({
