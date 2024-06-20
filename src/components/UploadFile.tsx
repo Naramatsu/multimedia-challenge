@@ -10,8 +10,9 @@ import {
   uploadLabel,
 } from "../utils/constants";
 import { AlertMessage } from "../models/alert.interface";
-import { ToastTypes } from "../utils/enums";
+import { RequestStatus, ToastTypes } from "../utils/enums";
 import Toast from "./Toast";
+import Spinner from "./Spinner";
 
 const fileTypes = ["JPG", "PNG", "GIF", "MP4", "WEBM"];
 
@@ -21,11 +22,14 @@ const UploadFile = () => {
   const [toastMessage, setToastMessage] = useState<AlertMessage>(
     errorMessageInitialState
   );
-  const { uploadFiles } = useContext(FileContext);
+  const { uploadFiles, fileUploadStatus } = useContext(FileContext);
+  const isLoading = fileUploadStatus === RequestStatus.LOADING;
+  const isToastTypeError = toastMessage.type === ToastTypes.ERROR;
 
   const onSubmitFile = async () => {
     if (!file) return null;
-    await uploadFiles(file);
+    const type = file.type.split("/").at(0);
+    await uploadFiles(file, type);
     setToastMessage({
       visible: true,
       type: ToastTypes.SUCCESS,
@@ -74,13 +78,13 @@ const UploadFile = () => {
           <div
             className={`w-[400px] md:w-full border-2 h-[400px] rounded-lg shadow-lg flex justify-center items-center
           ${
-            toastMessage.visible
+            isToastTypeError
               ? "bg-red-100 border-red-800"
               : "bg-slate-200 border-slate-800"
           }
           `}
           >
-            {toastMessage?.visible ? (
+            {isToastTypeError ? (
               <p className="text-red-600">{toastMessage.message}</p>
             ) : (
               <p>{clickOrDropFileLabel}</p>
@@ -103,11 +107,15 @@ const UploadFile = () => {
                   disabled:opacity-50
                   disabled:cursor-not-allowed
                   w-full
+                  flex
+                  gap-2
+                  justify-center
                   `}
           type="button"
-          disabled={!imagePreview}
+          disabled={!imagePreview || isLoading}
           onClick={onSubmitFile}
         >
+          {isLoading && <Spinner />}
           {uploadLabel}
         </button>
       </section>
