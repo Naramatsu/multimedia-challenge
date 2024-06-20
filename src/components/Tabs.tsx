@@ -1,7 +1,7 @@
 const Tabs = ({ tabs, activeTab, onChangetab }: TabsInterface) => (
   <div className="m-auto ml-0 w-full pt-2">
     <div className="flex border-gray-300 w-full">
-      {tabs.map((tab: any, index: number) => (
+      {tabs.map((tab: string, index: number) => (
         <button
           key={index}
           className={`
