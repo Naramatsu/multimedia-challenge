@@ -7,6 +7,8 @@ export const errorMessageInitialState: AlertMessage = {
   type: ToastTypes.EMPTY,
 };
 
+export const fileTypes = ["JPG", "PNG", "GIF", "MP4", "WEBM"];
+
 // App
 export const appTitle =
   "Prueba Tecnica SWE II - Alexandra Lozano Immigration Law Interview Process";
@@ -36,6 +38,7 @@ export const typeErrorMessage =
 export const clickOrDropFileLabel =
   "Haz click aqui o arrastra una imagen o video.";
 export const uploadLabel = "Subir archivo";
+export const uploadFileErrorMessage = "La imagen se subio correctamente";
 
 // Context
 export const generalErrorMessage = "Opps! Hubo un error.";
