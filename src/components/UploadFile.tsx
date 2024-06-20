@@ -4,17 +4,17 @@ import { FileContext } from "../context";
 import {
   clickOrDropFileLabel,
   errorMessageInitialState,
+  fileTypes,
   previewLabel,
   sizeErrorMessage,
   typeErrorMessage,
+  uploadFileErrorMessage,
   uploadLabel,
 } from "../utils/constants";
 import { AlertMessage } from "../models/alert.interface";
 import { RequestStatus, ToastTypes } from "../utils/enums";
 import Toast from "./Toast";
 import Spinner from "./Spinner";
-
-const fileTypes = ["JPG", "PNG", "GIF", "MP4", "WEBM"];
 
 const UploadFile = () => {
   const [file, setFile] = useState<any>(null);
@@ -33,7 +33,7 @@ const UploadFile = () => {
     setToastMessage({
       visible: true,
       type: ToastTypes.SUCCESS,
-      message: "La imagen se subio correctamente",
+      message: uploadFileErrorMessage,
     });
   };
 
@@ -87,7 +87,7 @@ const UploadFile = () => {
             {isToastTypeError ? (
               <p className="text-red-600">{toastMessage.message}</p>
             ) : (
-              <p>{clickOrDropFileLabel}</p>
+              <label htmlFor="file">{clickOrDropFileLabel}</label>
             )}
           </div>
         </FileUploader>
