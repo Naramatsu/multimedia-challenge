@@ -1,6 +1,6 @@
-const Tabs = ({ tabs, activeTab, onChangetab }: any) => (
+const Tabs = ({ tabs, activeTab, onChangetab }: TabsInterface) => (
   <div className="m-auto ml-0 w-full pt-2">
-    <div className="flex  border-gray-300 w-full">
+    <div className="flex border-gray-300 w-full">
       {tabs.map((tab: any, index: number) => (
         <button
           key={index}
@@ -17,3 +17,9 @@ const Tabs = ({ tabs, activeTab, onChangetab }: any) => (
 );
 
 export default Tabs;
+
+export interface TabsInterface {
+  tabs: string[];
+  activeTab: string;
+  onChangetab: any;
+}
