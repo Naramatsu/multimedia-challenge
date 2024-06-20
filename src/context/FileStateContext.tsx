@@ -31,13 +31,13 @@ const FileStateContext = ({ children }: any) => {
     }
   };
 
-  const uploadFiles = async (file: File): Promise<void> => {
+  const uploadFiles = async (file: File, type: string): Promise<void> => {
     dispatch({
       type: ActionTypes.UPLOAD_FILE_LOADING,
       payload: null,
     });
     try {
-      const cloudinaryData = await cloudinaryUploadFilesApi(file);
+      const cloudinaryData = await cloudinaryUploadFilesApi(file, type);
       const newFile: FileModel = {
         id: cloudinaryData.asset_id,
         lastModifiedDate: cloudinaryData.created_at,
