@@ -13,9 +13,13 @@ export const fileTypes = ["JPG", "PNG", "GIF", "MP4", "WEBM"];
 export const appTitle =
   "Prueba Tecnica SWE II - Alexandra Lozano Immigration Law Interview Process";
 export const devName = "by: Jonathan Narvaez Martinez";
-export const imageNameLabel = "Nombre de la imagen:";
+export const imageNameLabel = "Nombre del archivo:";
 export const btnMainPlaceHolder = "Haz click en el boton aqui para cargar ->";
 export const showModalLabel = "Abrir Modal";
+export const noFileSelectedLabel =
+  "No has seleccionado alguna imagen o video aun.";
+export const fileSizeLabel = "Peso del archivo";
+export const urlLabel = "Url";
 
 // Gallery
 export const videoNotSupportedLabel =
