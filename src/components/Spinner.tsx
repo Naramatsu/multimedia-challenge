@@ -5,6 +5,7 @@ const Spinner = () => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
+      data-testid="spinner"
     >
       <circle
         className="opacity-25"
@@ -12,7 +13,7 @@ const Spinner = () => {
         cy="12"
         r="10"
         stroke="currentColor"
-        stroke-width="4"
+        strokeWidth="4"
       ></circle>
       <path
         className="opacity-75"
