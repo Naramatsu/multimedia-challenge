@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { FileContext } from "../context";
 import {
   clickOrDropFileLabel,
   errorMessageInitialState,
   fileTypes,
+  generalErrorMessage,
   previewLabel,
   sizeErrorMessage,
   typeErrorMessage,
@@ -30,12 +31,22 @@ const UploadFile = () => {
     if (!file) return null;
     const type = file.type.split("/").at(0);
     await uploadFiles(file, type);
-    setToastMessage({
-      visible: true,
-      type: ToastTypes.SUCCESS,
-      message: uploadFileErrorMessage,
-    });
   };
+
+  useEffect(() => {
+    if (fileUploadStatus === RequestStatus.LOADED)
+      setToastMessage({
+        visible: true,
+        type: ToastTypes.SUCCESS,
+        message: uploadFileErrorMessage,
+      });
+    if (fileUploadStatus === RequestStatus.ERROR)
+      setToastMessage({
+        visible: true,
+        type: ToastTypes.ERROR,
+        message: generalErrorMessage,
+      });
+  }, [fileUploadStatus]);
 
   const handlerChange = (newFile: File) => {
     setFile(newFile);
@@ -64,7 +75,7 @@ const UploadFile = () => {
           />
         )}
       </section>
-      <section className="flex flex-col gap-2 justify-center">
+      <section className="flex flex-col gap-2 justify-center items-center">
         <FileUploader
           handleChange={handlerChange}
           name="file"
@@ -76,7 +87,7 @@ const UploadFile = () => {
           onTypeError={() => handlerErrorMessage(typeErrorMessage)}
         >
           <div
-            className={`w-[400px] md:w-full border-2 h-[400px] rounded-lg shadow-lg flex justify-center items-center
+            className={`w-[400px] md:w-full border-2 h-[400px] rounded-lg shadow-lg flex justify-center items-center p-8
           ${
             isToastTypeError
               ? "bg-red-100 border-red-800"
