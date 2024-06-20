@@ -8,6 +8,9 @@ export const errorMessageInitialState: AlertMessage = {
 };
 
 export const fileTypes = ["JPG", "PNG", "GIF", "MP4", "WEBM"];
+export const IMAGE = "image";
+export const VIDEO = "video";
+export const validTypes = [IMAGE, VIDEO];
 
 // App
 export const appTitle =

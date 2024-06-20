@@ -30,7 +30,13 @@ export const filesMock: FileModel[] = [
 
 export const fileMock: FileModel = filesMock[0];
 
-export const fileBlobMock = new File([""], "filename", { type: "image/jpg" });
+export const fileBlobMock = new File(["hello"], "hello.png", {
+  type: "image/png",
+});
+
+export const fileVideoBlobMock = new File(["hello"], "hello.mp4", {
+  type: "video/mp4",
+});
 
 export const fileInitialStateMock: FileInitialStateModel = {
   files: [],
