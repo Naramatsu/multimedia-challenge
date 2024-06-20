@@ -20,7 +20,7 @@ const mediaBuilder = (file: FileModel, index: number) => {
   return (
     <img
       src={file.url}
-      className="w-full object-cover rounded-md shadow-lg h-[240px] peer"
+      className="w-full object-contain rounded-md shadow-lg h-[240px] peer"
       alt={`media-${index + 1}`}
     />
   );
