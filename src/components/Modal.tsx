@@ -5,18 +5,25 @@ import UploadFile from "./UploadFile";
 import { IoCloseOutline } from "react-icons/io5";
 import { FileContext } from "../context";
 import { FileModel } from "../models/file.interface";
-import { RequestStatus } from "../utils/enums";
 import {
   closeModalLabel,
+  errorMessageInitialState,
   galleryTabLabel,
+  generalErrorMessage,
   mediaLibraryTitle,
   selectLabel,
   tabsList,
   uploadFileTabLabel,
 } from "../utils/constants";
+import Toast from "./Toast";
+import { AlertMessage } from "../models/alert.interface";
+import { RequestStatus, ToastTypes } from "../utils/enums";
 
 const Modal = ({ onClose }: any) => {
   const [activeTab, setActiveTab] = useState(galleryTabLabel);
+  const [toastMessage, setToastMessage] = useState<AlertMessage>(
+    errorMessageInitialState
+  );
   const [fileSelectedState, setFileSelectedState] = useState<FileModel | null>(
     null
   );
@@ -24,15 +31,26 @@ const Modal = ({ onClose }: any) => {
     useContext(FileContext);
 
   useEffect(() => {
-    if (!files?.length || fileStatus === RequestStatus.NOT_LOADED) fetchFiles();
+    if (!files?.length) fetchFiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [files, fileStatus]);
+  }, [files]);
+
+  useEffect(() => {
+    if (fileStatus === RequestStatus.ERROR)
+      setToastMessage({
+        visible: true,
+        type: ToastTypes.ERROR,
+        message: generalErrorMessage,
+      });
+  }, [fileStatus]);
+
+  const onCloseToast = () => setToastMessage(errorMessageInitialState);
 
   return (
     <>
       <main
         role="dialog"
-        className="justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none top-6 bottom-6"
+        className="modal justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none top-6 bottom-6"
       >
         <section className="relative w-auto mx-auto max-w-5xl">
           <section className="border-0 rounded-lg shadow-lg relative w-full bg-white outline-none focus:outline-none z-10">
@@ -102,6 +120,12 @@ const Modal = ({ onClose }: any) => {
             </section>
           </section>
         </section>
+        <Toast
+          visible={toastMessage.visible}
+          type={toastMessage.type}
+          message={toastMessage.message}
+          onClose={onCloseToast}
+        />
       </main>
       <section className="opacity-25 fixed inset-0 z-40 bg-black" />
     </>
